@@ -1,3 +1,4 @@
 allure-results/
 *-results.xml
 node_modules/
+.env
