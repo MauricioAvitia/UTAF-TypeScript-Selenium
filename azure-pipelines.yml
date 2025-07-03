@@ -43,3 +43,9 @@ steps:
     failTaskOnFailedTests: true
     failTaskOnMissingResultsFile: true
     testRunTitle: 'API Test Run $(System.Date)'
+
+- task: PublishAllureReport@1
+  inputs:
+    allureVersion: '3.3.0'
+    testResultsDir: 'allure-results'
+    reportName: 'Allure Test Reports'
