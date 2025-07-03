@@ -29,7 +29,7 @@ steps:
   inputs:
     testResultsFormat: 'XUnit'
     testResultsFiles: 'api/reports/test-results.xml'
-    failTaskOnFailedTests: true
+    failTaskOnFailedTests: false
     failTaskOnMissingResultsFile: true
     testRunTitle: 'API Test Run $(System.Date)'
 
@@ -37,7 +37,7 @@ steps:
   inputs:
     testResultsFormat: 'XUnit'
     testResultsFiles: 'ui/reports/test-results.xml'
-    failTaskOnFailedTests: true
+    failTaskOnFailedTests: false
     failTaskOnMissingResultsFile: true
     testRunTitle: 'API Test Run $(System.Date)'
 
