@@ -32,6 +32,7 @@ jobs:
 - job: RunTests
   displayName: 'Run Tests'
   continueOnError: true
+  dependsOn: SetupFramework
 
   steps:
 
@@ -45,6 +46,7 @@ jobs:
 # Job for publishing test results
 - job: PublishTestResults
   displayName: 'Publish Test Results'
+  dependsOn: RunTests
 
   steps:
 
