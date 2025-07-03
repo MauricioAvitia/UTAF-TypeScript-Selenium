@@ -23,6 +23,31 @@ jobs:
   - script: npm install -g allure-commandline --save-dev
     displayName: 'Install allure commandline'
 
+  - task: Tokenizer@0
+    inputs:
+      tokenDataSource: 'environmentVariables'
+      tokenIdentifierRegex: '_API_BASE_URL_'
+
+  - task: Tokenizer@0
+    inputs:
+      tokenDataSource: 'environmentVariables'
+      tokenIdentifierRegex: '_API_TIMEOUT_'
+
+  - task: Tokenizer@0
+    inputs:
+      tokenDataSource: 'environmentVariables'
+      tokenIdentifierRegex: '_API_AUTH_URL_'
+
+  - task: Tokenizer@0
+    inputs:
+      tokenDataSource: 'environmentVariables'
+      tokenIdentifierRegex: '_UI_URL_'
+
+  - task: Tokenizer@0
+    inputs:
+      tokenDataSource: 'environmentVariables'
+      tokenIdentifierRegex: '_CHROMEDRIVER_PATH_'
+
   - script: yarn testapi
     displayName: 'Run API tests'
     continueOnError: true
