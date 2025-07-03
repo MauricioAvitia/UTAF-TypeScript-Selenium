@@ -24,4 +24,17 @@ export class DriverCapabilities {
     public getCapabilities(): Capabilities {
         return this.capabilities;
     }
+
+    /**
+     * Method to get the path to the ChromeDriver executable.
+     * @returns The path to the ChromeDriver.
+     * @throws Error if the CHROMEDRIVER_PATH environment variable is not set.
+     */
+    public getChromeDriverPath(): string {
+        const path = process.env.CHROMEDRIVER_PATH;
+        if (!path) {
+            throw new Error("CHROMEDRIVER_PATH environment variable is not set.");
+        }
+        return path;
+    }
 }

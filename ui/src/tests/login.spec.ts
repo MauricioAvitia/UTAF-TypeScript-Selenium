@@ -14,7 +14,7 @@ describe('LogIn', async function () {
     beforeEach(async () => {
         driver = new Driver(await new Builder()
         .forBrowser(Browser.CHROME)
-        .setChromeService(new chrome.ServiceBuilder('ui/driver/chromedriver-win64/chromedriver.exe'))
+        .setChromeService(new chrome.ServiceBuilder(capabilities.getChromeDriverPath()))
         .setChromeOptions(new chrome.Options(capabilities.getCapabilities()))
         .build());
         
