@@ -1,4 +1,5 @@
 import { Capabilities } from "selenium-webdriver";
+import dotenv from "dotenv";
 
 /**
  * Class to define and manage the capabilities for the WebDriver instance.
@@ -10,6 +11,8 @@ export class DriverCapabilities {
      * Constructor to initialize the driver capabilities.
      */
     constructor() {
+        dotenv.config();
+        
         this.capabilities = new Capabilities();
         this.capabilities.set("browserName", "chrome");
         this.capabilities.set("goog:chromeOptions", {

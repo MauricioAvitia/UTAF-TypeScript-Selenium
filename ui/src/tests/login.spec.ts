@@ -11,7 +11,7 @@ describe('LogIn', async function () {
     let loginPage: LoginPage;
     let capabilities: DriverCapabilities = new DriverCapabilities();
     
-    beforeEach(async () => {
+    beforeEach(async () => { try {
         driver = new Driver(await new Builder()
         .forBrowser(Browser.CHROME)
         .setChromeService(new chrome.ServiceBuilder(capabilities.getChromeDriverPath()))
@@ -19,7 +19,9 @@ describe('LogIn', async function () {
         .build());
         
         loginPage = new LoginPage(driver);
-    });
+        } catch (error) {
+        console.error('Test failed with error:', error); throw error;
+    }});
 
     it('UI Test 1.1 - LogIn with valid credentials', async function () { try {
         // Navigate to the login page
