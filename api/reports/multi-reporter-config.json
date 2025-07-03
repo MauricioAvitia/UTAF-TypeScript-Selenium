@@ -1,0 +1,6 @@
+{
+  "reporterEnabled": "spec, mocha-xunit-reporter",
+  "mochaXunitReporterReporterOptions": {
+    "mochaFile": "api/reports/test-results.xml"
+  }
+}
