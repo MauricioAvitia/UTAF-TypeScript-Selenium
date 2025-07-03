@@ -1,6 +1,7 @@
 {
-  "reporterEnabled": "spec, mocha-xunit-reporter",
+  "reporterEnabled": "spec, mocha-xunit-reporter, allure-mocha",
   "mochaXunitReporterReporterOptions": {
     "mochaFile": "api/reports/test-results.xml"
-  }
+  },
+  "reporterOptions": ["resultsDir=allure-results"]
 }

@@ -13,7 +13,7 @@ export class DriverCapabilities {
         this.capabilities = new Capabilities();
         this.capabilities.set("browserName", "chrome");
         this.capabilities.set("goog:chromeOptions", {
-            args: ["--guest"]
+            args: ["--guest", "--headless", "--disable-gpu", "--window-size=1920,1080"],
         });
     }
     
