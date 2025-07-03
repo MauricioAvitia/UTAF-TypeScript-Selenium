@@ -4,45 +4,70 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '22.17.0'
-  displayName: 'Install Node.js'
+jobs:
 
-- script: npm install --global yarn
-  displayName: 'Yarn installation'
 
-- script: yarn
-  displayName: 'Install dependencies'
+# Job for setting up the framework and fetching dependencies
+- job: SetupFramework
+  displayName: 'Setup Framework'
+  continueOnError: true
 
-- script: npm install -g allure-commandline --save-dev
-  displayName: 'Install allgure commandlinne'
+  steps:
 
-- script: yarn testapi
-  displayName: 'Run API tests'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.17.0'
+    displayName: 'Install Node.js'
 
-- script: yarn testui
-  displayName: 'Run UI tests'
+  - script: npm install --global yarn
+    displayName: 'Yarn installation'
 
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'XUnit'
-    testResultsFiles: 'api/reports/test-results.xml'
-    failTaskOnFailedTests: false
-    failTaskOnMissingResultsFile: true
-    testRunTitle: 'API Test Run $(System.Date)'
+  - script: yarn
+    displayName: 'Install dependencies'
 
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'XUnit'
-    testResultsFiles: 'ui/reports/test-results.xml'
-    failTaskOnFailedTests: false
-    failTaskOnMissingResultsFile: true
-    testRunTitle: 'API Test Run $(System.Date)'
+  - script: npm install -g allure-commandline --save-dev
+    displayName: 'Install allure commandline'
 
-- task: PublishAllureReport@1
-  inputs:
-    allureVersion: '3.3.0'
-    testResultsDir: 'allure-results'
-    reportName: 'Allure Test Reports'
+
+# Job for running tests
+- job: RunTests
+  displayNamee: 'Run Tests'
+  dependsOn: SetupFramework
+
+  steps:
+
+  - script: yarn testapi
+    displayName: 'Run API tests'
+
+  - script: yarn testui
+    displayName: 'Run UI tests'
+
+
+# Job for publishing test results
+- job: PublishTestResults
+  displayName: 'Publish Test Results'
+  dependsOn: RunTests
+
+  steps:
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'XUnit'
+      testResultsFiles: 'api/reports/test-results.xml'
+      failTaskOnFailedTests: false
+      failTaskOnMissingResultsFile: true
+      testRunTitle: 'API Test Run $(System.Date)'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'XUnit'
+      testResultsFiles: 'ui/reports/test-results.xml'
+      failTaskOnFailedTests: false
+      failTaskOnMissingResultsFile: true
+      testRunTitle: 'API Test Run $(System.Date)'
+
+  - task: PublishAllureReport@1
+    inputs:
+      allureVersion: '3.3.0'
+      testResultsDir: 'allure-results'
+      reportName: 'Allure Test Reports'
