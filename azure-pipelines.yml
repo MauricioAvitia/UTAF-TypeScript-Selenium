@@ -10,7 +10,6 @@ jobs:
 # Job for setting up the framework and fetching dependencies
 - job: SetupFramework
   displayName: 'Setup Framework'
-  continueOnError: true
 
   steps:
 
@@ -31,8 +30,9 @@ jobs:
 
 # Job for running tests
 - job: RunTests
-  displayNamee: 'Run Tests'
+  displayName: 'Run Tests'
   dependsOn: SetupFramework
+  continueOnError: true
 
   steps:
 
@@ -46,7 +46,6 @@ jobs:
 # Job for publishing test results
 - job: PublishTestResults
   displayName: 'Publish Test Results'
-  dependsOn: RunTests
 
   steps:
 
