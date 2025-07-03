@@ -23,9 +23,6 @@ jobs:
   - script: npm install -g allure-commandline --save-dev
     displayName: 'Install allure commandline'
 
-  - script: chmod +x ui\driver\chromedriver-win64\chromedriver
-    displayName: 'Make ChromeDriver executable'
-
   - script: yarn testapi
     displayName: 'Run API tests'
     continueOnError: true
