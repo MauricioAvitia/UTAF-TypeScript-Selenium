@@ -19,9 +19,6 @@ steps:
 - script: npm install -g allure-commandline --save-dev
   displayName: 'Install allgure commandlinne'
 
-- script: yarn run build
-  displayName: 'Build project'
-
 - script: yarn testapi
   displayName: 'Run API tests'
 
