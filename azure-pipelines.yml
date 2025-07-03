@@ -31,7 +31,6 @@ jobs:
 # Job for running tests
 - job: RunTests
   displayName: 'Run Tests'
-  dependsOn: SetupFramework
   continueOnError: true
 
   steps:
