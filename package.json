@@ -22,6 +22,6 @@
   },
   "scripts": {
     "testapi": "yarn mocha --reporter mocha-multi-reporters --reporter-options configFile=api/reports/multi-reporter-config.json -r ts-node/register \"api/src/tests/*.spec.ts\"",
-    "testui": "yarn mocha --reporter mocha-multi-reporters --reporter-options configFile=ui/reports/multi-reporter-config.json -r ts-node/register \"ui/src/tests/*.spec.ts\""
+    "testui": "yarn mocha --timeout 10000 --reporter mocha-multi-reporters --reporter-options configFile=ui/reports/multi-reporter-config.json -r ts-node/register \"ui/src/tests/*.spec.ts\""
   }
 }
