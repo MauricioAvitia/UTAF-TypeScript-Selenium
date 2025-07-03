@@ -23,6 +23,13 @@ jobs:
   - script: npm install -g allure-commandline --save-dev
     displayName: 'Install allure commandline'
 
+  - script: |
+      wget -O chromedriver.zip https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.91/linux64/chromedriver-linux64.zip
+      unzip chromedriver.zip -d ui/driver/
+      mv ui/driver/chromedriver-linux64/chromedriver ui/driver/chromedriver
+      chmod +x ui/driver/chromedriver
+    displayName: 'Download and setup Linux ChromeDriver'
+
   - script: yarn testapi
     displayName: 'Run API tests'
     continueOnError: true
