@@ -5,14 +5,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-
-
-# Job for setting up the framework and fetching dependencies
-- job: SetupFramework
-  displayName: 'Setup Framework'
+- job: TestSuiteExecution
+  displayName: 'Test Suite Execution'
 
   steps:
-
   - task: NodeTool@0
     inputs:
       versionSpec: '22.17.0'
@@ -27,28 +23,13 @@ jobs:
   - script: npm install -g allure-commandline --save-dev
     displayName: 'Install allure commandline'
 
-
-# Job for running tests
-- job: RunTests
-  displayName: 'Run Tests'
-  continueOnError: true
-  dependsOn: SetupFramework
-
-  steps:
-
   - script: yarn testapi
     displayName: 'Run API tests'
+    continueOnError: true
 
   - script: yarn testui
     displayName: 'Run UI tests'
-
-
-# Job for publishing test results
-- job: PublishTestResults
-  displayName: 'Publish Test Results'
-  dependsOn: RunTests
-
-  steps:
+    continueOnError: true
 
   - task: PublishTestResults@2
     inputs:
