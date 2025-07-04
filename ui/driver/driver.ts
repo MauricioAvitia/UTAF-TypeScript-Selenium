@@ -102,5 +102,6 @@ export class Driver {
         await this.waitForElementToBeVisible(element, elementName);
         console.log(`Clicking on element: ${elementName}`);
         await element.click();
+        await this.wait(500);
     }
 }
